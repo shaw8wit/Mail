@@ -68,18 +68,18 @@ function load_mailbox(mailbox) {
         const cover = document.createElement('div');
         cover.classList.add('card', 'p-4', 'my-4');
         if (e['read'])
-          cover.style.background = 'grey';
+          cover.style.background = 'lightgreen';
 
         const body = document.createElement('div');
         body.classList.add('card-body', 'text-center');
 
         const title = document.createElement('div');
         title.classList.add('card-title');
-        title.innerText = e['sender'];
+        title.innerHTML = `From: <strong>${e['sender']}</strong>`;
 
         const data = document.createElement('div');
         data.classList.add('card-text');
-        data.innerText = `${e['subject']}\n${e['timestamp']}`;
+        data.innerHTML = `Subject: <strong>${e['subject']}</strong><br>At: <strong>${e['timestamp']}</strong>`;
 
         body.append(title, data);
 
