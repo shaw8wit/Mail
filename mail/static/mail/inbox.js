@@ -66,24 +66,30 @@ function load_mailbox(mailbox) {
         console.log(e);
 
         const cover = document.createElement('div');
-        cover.classList.add('card', 'p-4', 'my-4');
-        if (e['read'])
-          cover.style.background = 'lightgreen';
+        cover.classList.add(e['read'] ? 'mail__read' : 'mail__unread', 'p-4', 'my-3');
 
-        const body = document.createElement('div');
-        body.classList.add('card-body', 'text-center');
+        // const body = document.createElement('div');
+        // body.classList.add('card-body', 'text-center');
 
-        const title = document.createElement('div');
-        title.classList.add('card-title');
-        title.innerHTML = `From: <strong>${e['sender']}</strong>`;
+        // const title = document.createElement('div');
+        // title.classList.add('card-title');
+        // title.innerHTML = `From: <strong>${e['sender']}</strong>`;
 
-        const data = document.createElement('div');
-        data.classList.add('card-text');
-        data.innerHTML = `Subject: <strong>${e['subject']}</strong><br>At: <strong>${e['timestamp']}</strong>`;
+        // const data = document.createElement('div');
+        // data.classList.add('card-text');
+        // data.innerHTML = `Subject: <strong>${e['subject']}</strong><br>At: <strong>${e['timestamp']}</strong>`;
 
-        body.append(title, data);
+        // body.append(title, data);
 
-        cover.appendChild(body);
+        // cover.appendChild(body);
+
+        cover.innerHTML = `
+          <div class="mail__value">
+            <span class="mail__from">${e['sender']}</span>
+            <span class="mail__subject"><strong>${e['subject'].slice(0,26)}${e['subject'].length >= 26?'...':''}</strong></span>
+            <span class="mail__time"><small>${e['timestamp']}</small></span>
+          </div>
+        `;
 
         div.appendChild(cover);
       });

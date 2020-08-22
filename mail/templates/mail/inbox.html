@@ -2,20 +2,23 @@
 {% load static %}
 
 {% block body %}
-<h2>{{ request.user.email }}</h2>
-
-<button class="btn btn-sm btn-outline-primary" id="inbox">Inbox</button>
-<button class="btn btn-sm btn-outline-primary" id="compose">Compose</button>
-<button class="btn btn-sm btn-outline-primary" id="sent">Sent</button>
-<button class="btn btn-sm btn-outline-primary" id="archived">Archived</button>
-<a class="btn btn-sm btn-outline-primary" href="{% url 'logout' %}">Log Out</a>
+<div class="nav-grid pt-4">
+    <h2>{{ request.user.email }}</h2>
+    <div class="menu">
+        <button class="btn btn-sm btn-outline-dark" id="inbox">Inbox</button>
+        <button class="btn btn-sm btn-outline-primary" id="compose">Compose</button>
+        <button class="btn btn-sm btn-outline-success" id="sent">Sent</button>
+        <button class="btn btn-sm btn-outline-info" id="archived">Archived</button>
+        <a class="btn btn-sm btn-outline-danger" href="{% url 'logout' %}">Log Out</a>
+    </div>
+</div>
 <hr>
 
 <div id="emails-view">
 </div>
 
 <div id="compose-view">
-    <h3>New Email</h3>
+    <h3 class="text-center">New Email</h3>
     <form id="compose-form">
         <div class="form-group">
             From: <input disabled class="form-control" value="{{ request.user.email }}">

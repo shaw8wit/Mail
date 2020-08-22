@@ -1,3 +1,71 @@
 textarea {
-    min-height: 400px;
+    min-height: 180px;
+}
+
+body {
+    background: whitesmoke;
+}
+
+.mail__read {
+    background: transparent;
+    border: 0.02rem dashed black;
+    border-radius: 0.5rem;
+}
+
+.mail__unread {
+    background: white;
+    border: 0.05rem solid black;
+    border-radius: 0.5rem;
+}
+
+.mail__value {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "one two three";
+    grid-gap: 20px;
+}
+
+.mail__from {
+    grid-area: one;
+}
+
+.mail__subject {
+    grid-area: two;
+}
+
+.mail__time {
+    grid-area: three;
+    text-align: end;
+}
+
+@media only screen and (max-width: 900px) {
+    .mail__value {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas: "one two two";
+        grid-gap: 20px;
+    }
+
+    .mail__time {
+        display: none;
+    }
+
+    .mail__subject {
+        text-align: end;
+    }
+
+    .nav-grid {
+        justify-items: start;
+    }
+}
+
+.nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    align-items: center;
+    grid-gap: 10px;
+}
+
+.menu {
+    text-align: end;
 }
