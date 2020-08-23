@@ -55,7 +55,7 @@ function load_mailbox(mailbox) {
   document.querySelector('#compose-view').style.display = 'none';
 
   // Show the mailbox name
-  document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
+  document.querySelector('#emails-view').innerHTML = `<h3 class="py-2">${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
 
   // Get the appropriate data
   fetch(`/emails/${mailbox}`)
@@ -65,26 +65,11 @@ function load_mailbox(mailbox) {
       emails.forEach(e => {
         console.log(e);
 
-        const cover = document.createElement('div');
-        cover.classList.add(e['read'] ? 'mail__read' : 'mail__unread', 'p-4', 'my-3');
-
-        // const body = document.createElement('div');
-        // body.classList.add('card-body', 'text-center');
-
-        // const title = document.createElement('div');
-        // title.classList.add('card-title');
-        // title.innerHTML = `From: <strong>${e['sender']}</strong>`;
-
-        // const data = document.createElement('div');
-        // data.classList.add('card-text');
-        // data.innerHTML = `Subject: <strong>${e['subject']}</strong><br>At: <strong>${e['timestamp']}</strong>`;
-
-        // body.append(title, data);
-
-        // cover.appendChild(body);
+        const cover = document.createElement('a');
+        cover.href = "#";
 
         cover.innerHTML = `
-          <div class="mail__value">
+          <div class="mail__value ${e['read'] ? 'mail--read' : 'mail--unread'} p-4">
             <span class="mail__from">${e['sender']}</span>
             <span class="mail__subject"><strong>${e['subject'].slice(0,26)}${e['subject'].length >= 26?'...':''}</strong></span>
             <span class="mail__time"><small>${e['timestamp']}</small></span>

@@ -3,17 +3,17 @@ textarea {
 }
 
 body {
-    background: whitesmoke;
+    background: mistyrose;
 }
 
-.mail__read {
+.mail--read {
     background: transparent;
     border: 0.02rem dashed black;
     border-radius: 0.5rem;
 }
 
-.mail__unread {
-    background: white;
+.mail--unread {
+    background: rgba(255, 218, 185, 0.315);
     border: 0.05rem solid black;
     border-radius: 0.5rem;
 }
@@ -22,7 +22,8 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: "one two three";
-    grid-gap: 20px;
+    grid-gap: 1rem;
+    margin-bottom: 1.25rem;
 }
 
 .mail__from {
@@ -38,7 +39,7 @@ body {
     text-align: end;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 800px) {
     .mail__value {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
@@ -55,7 +56,7 @@ body {
     }
 
     .nav-grid {
-        justify-items: start;
+        justify-items: center;
     }
 }
 
@@ -68,4 +69,25 @@ body {
 
 .menu {
     text-align: end;
+}
+
+a {
+    color: black;
+    position: relative;
+    top: 0;
+    transition: top ease 0.5s;
+}
+
+a:hover {
+    text-decoration: none;
+    color: black;
+    top: -0.5rem;
+}
+
+a:hover>div {
+    box-shadow: 1px 1px #c58309,
+        2px 2px #c58309,
+        3px 3px #c58309,
+        4px 4px #c58309,
+        5px 5px #c58309;
 }
