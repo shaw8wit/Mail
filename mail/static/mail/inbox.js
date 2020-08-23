@@ -5,20 +5,22 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelector('#sent').addEventListener('click', () => load_mailbox('sent'));
   document.querySelector('#archived').addEventListener('click', () => load_mailbox('archive'));
   document.querySelector('#compose').addEventListener('click', compose_email);
-
   document.querySelector('#compose-form').addEventListener('submit', (e) => send_email(e));
 
   // By default, load the inbox
   load_mailbox('inbox');
 });
 
-function send_email(e) {
+const send_email = (e) => {
+
+  // prevent default submission of form
   e.preventDefault();
   const recipients = e["target"][1].value;
   const subject = e["target"][2].value;
   const body = e["target"][3].value;
   // console.log(`${recipients} ${subject} ${body}`);
 
+  // send post request to save email to db
   fetch('/emails', {
       method: 'POST',
       body: JSON.stringify({
@@ -33,10 +35,9 @@ function send_email(e) {
       console.log(result["message"]);
       load_mailbox('sent');
     });
-
 }
 
-function compose_email() {
+const compose_email = () => {
 
   // Show compose view and hide other views
   document.querySelector('#emails-view').style.display = 'none';
@@ -48,7 +49,7 @@ function compose_email() {
   document.querySelector('#compose-body').value = '';
 }
 
-function load_mailbox(mailbox) {
+const load_mailbox = (mailbox) => {
 
   // Show the mailbox and hide other views
   document.querySelector('#emails-view').style.display = 'block';
@@ -63,11 +64,12 @@ function load_mailbox(mailbox) {
     .then(emails => {
       const div = document.querySelector('#emails-view');
       emails.forEach(e => {
-        console.log(e);
-
+        // console.log(e);
         const cover = document.createElement('a');
-        cover.href = "#";
+        // add listener to each email
+        cover.addEventListener('click', () => displayEmail(e));
 
+        // body of each email in the list
         cover.innerHTML = `
           <div class="mail__value ${e['read'] ? 'mail--read' : 'mail--unread'} p-4">
             <span class="mail__from">${e['sender']}</span>
@@ -75,8 +77,30 @@ function load_mailbox(mailbox) {
             <span class="mail__time"><small>${e['timestamp']}</small></span>
           </div>
         `;
-
+        // add the item to the list
         div.appendChild(cover);
       });
     });
+}
+
+const displayEmail = (e) => {
+  // console.log(e['id']);
+  const div = document.querySelector('#emails-view');
+  div.innerHTML = `
+    <div class="details-grid pt-2">
+      <span>Sender: <strong>${e['sender']}</strong></span>
+      <span>Recipients: <strong>${e['recipients'].join(', ')}</strong></span>
+      <span>Subject: <strong>${e['subject']}</strong></span>
+      <span>Body: <strong>${e['body']}</strong>  kdjkfsdjkfjk sdfh kjdshjkf hdkshfkjhds kjhfkdshkfj hdskhfkj hdskfh dshkf hkdsh fkjhdskfh kdsh fkdsk hfkds kfhkds hfkh kdshfk hdskh fjkdshkf hdkhs kfhdskh kfhdsk hfjkdsh jkfhkdshkjf hkdsh fkhdsk fhdsjh fjkh dsjkhfjk sdhjkfh kdsjh jkfhdskj hfkdshkfj hkdsfhkjehfuewiofwe jofsj fjkdskj bfkdsbmf dsmb fdsbfsbdbf hsbf ewhfewhuif hiuew fih</span>
+      <span>Sent at: <strong>${e['timestamp']}</strong></span>
+    </div>
+  `;
+
+  // mark as read
+  fetch(`/emails/${e['id']}`, {
+    method: 'PUT',
+    body: JSON.stringify({
+      read: true,
+    })
+  });
 }

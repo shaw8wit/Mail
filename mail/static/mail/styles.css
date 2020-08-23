@@ -91,3 +91,9 @@ a:hover>div {
         4px 4px #c58309,
         5px 5px #c58309;
 }
+
+.details-grid {
+    height: 84vh;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 5fr 1fr;
+}
