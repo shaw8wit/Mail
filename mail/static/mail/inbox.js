@@ -75,6 +75,7 @@ const load_mailbox = (mailbox) => {
             <span class="mail__from">${e['sender']}</span>
             <span class="mail__subject"><strong>${e['subject'].slice(0,26)}${e['subject'].length >= 26?'...':''}</strong></span>
             <span class="mail__time"><small>${e['timestamp']}</small></span>
+            <button class="icon"><i class="fa fa-archive"></i></button>
           </div>
         `;
         // add the item to the list
@@ -85,13 +86,15 @@ const load_mailbox = (mailbox) => {
 
 const displayEmail = (e) => {
   // console.log(e['id']);
+
+  // display one email
   const div = document.querySelector('#emails-view');
   div.innerHTML = `
     <div class="details-grid pt-2">
       <span>Sender: <strong>${e['sender']}</strong></span>
       <span>Recipients: <strong>${e['recipients'].join(', ')}</strong></span>
       <span>Subject: <strong>${e['subject']}</strong></span>
-      <span>Body: <strong>${e['body']}</strong>  kdjkfsdjkfjk sdfh kjdshjkf hdkshfkjhds kjhfkdshkfj hdskhfkj hdskfh dshkf hkdsh fkjhdskfh kdsh fkdsk hfkds kfhkds hfkh kdshfk hdskh fjkdshkf hdkhs kfhdskh kfhdsk hfjkdsh jkfhkdshkjf hkdsh fkhdsk fhdsjh fjkh dsjkhfjk sdhjkfh kdsjh jkfhdskj hfkdshkfj hkdsfhkjehfuewiofwe jofsj fjkdskj bfkdsbmf dsmb fdsbfsbdbf hsbf ewhfewhuif hiuew fih</span>
+      <span>Body: <strong>${e['body']}</strong></span>
       <span>Sent at: <strong>${e['timestamp']}</strong></span>
     </div>
   `;

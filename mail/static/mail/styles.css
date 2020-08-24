@@ -9,19 +9,18 @@ body {
 .mail--read {
     background: transparent;
     border: 0.02rem dashed black;
-    border-radius: 0.5rem;
 }
 
 .mail--unread {
     background: rgba(255, 218, 185, 0.315);
     border: 0.05rem solid black;
-    border-radius: 0.5rem;
 }
 
 .mail__value {
+    border-radius: 0.5rem;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: "one two three";
+    grid-template-columns: 1fr 1fr 1fr auto;
+    grid-template-areas: "one two three four";
     grid-gap: 1rem;
     margin-bottom: 1.25rem;
 }
@@ -39,11 +38,15 @@ body {
     text-align: end;
 }
 
-@media only screen and (max-width: 800px) {
+.icon {
+    grid-area: four;
+}
+
+@media only screen and (max-width: 991px) {
     .mail__value {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-areas: "one two two";
+        grid-template-columns: 1fr 1fr 1fr auto;
+        grid-template-areas: "one two two four";
         grid-gap: 20px;
     }
 
@@ -58,6 +61,20 @@ body {
     .nav-grid {
         justify-items: center;
     }
+}
+
+@media only screen and (max-width: 512px) {
+    .mail__value {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-areas: "one one four""two two four";
+        grid-gap: 20px;
+        justify-items: center;
+    }
+}
+
+@media only screen and (max-width: 380px) {
+    /* todo make clickable menu */
 }
 
 .nav-grid {
@@ -76,6 +93,8 @@ a {
     position: relative;
     top: 0;
     transition: top ease 0.5s;
+
+    cursor: pointer;
 }
 
 a:hover {
@@ -85,15 +104,25 @@ a:hover {
 }
 
 a:hover>div {
-    box-shadow: 1px 1px #c58309,
-        2px 2px #c58309,
-        3px 3px #c58309,
-        4px 4px #c58309,
-        5px 5px #c58309;
+    box-shadow: 5px 5px #c58309;
 }
 
 .details-grid {
     height: 84vh;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 5fr 1fr;
+}
+
+.icon {
+    border: none;
+    color: lightblue;
+    font-size: 16px;
+    cursor: pointer;
+    background: transparent;
+    /* display: none; */
+}
+
+.icon:hover {
+    color: blue;
+
 }
