@@ -58,6 +58,9 @@ const load_mailbox = (mailbox) => {
   // Show the mailbox name
   document.querySelector('#emails-view').innerHTML = `<h3 class="py-2">${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
 
+  // if the page is the sent box then to disable the archive button
+  const archive = mailbox === "sent";
+
   // Get the appropriate data
   fetch(`/emails/${mailbox}`)
     .then(response => response.json())
@@ -75,7 +78,7 @@ const load_mailbox = (mailbox) => {
             <span class="mail__from">${e['sender']}</span>
             <span class="mail__subject"><strong>${e['subject'].slice(0,26)}${e['subject'].length >= 26?'...':''}</strong></span>
             <span class="mail__time"><small>${e['timestamp']}</small></span>
-            <button class="icon"><i class="fa fa-archive"></i></button>
+            <button class="icon" ${archive?'style="display:none;"':""}><i class="fa fa-archive"></i></button>
           </div>
         `;
         // add the item to the list
@@ -86,6 +89,18 @@ const load_mailbox = (mailbox) => {
 
 const displayEmail = (e) => {
   // console.log(e['id']);
+
+  // if the archive icon clicked the archive the mail and refresh
+  if (event.target.closest('.icon')) {
+    // console.log("clicked");
+    fetch(`/emails/${e['id']}`, {
+      method: 'PUT',
+      body: JSON.stringify({
+        archived: !e['archived'],
+      })
+    }).then(r => load_mailbox(e['archived'] ? 'archive' : 'inbox'));
+    return;
+  }
 
   // display one email
   const div = document.querySelector('#emails-view');
