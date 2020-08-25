@@ -37,16 +37,27 @@ const send_email = (e) => {
     });
 }
 
-const compose_email = () => {
+const compose_email = (e, sent = false) => {
+
+  var recipients = '',
+    subject = '',
+    body = '';
 
   // Show compose view and hide other views
   document.querySelector('#emails-view').style.display = 'none';
   document.querySelector('#compose-view').style.display = 'block';
 
+  // check if inputs are to be auto filled
+  if (e.body !== undefined) {
+    recipients = sent ? e['recipients'].join(', ') : e['sender'];
+    subject = `Re: ${e['subject']}`;
+    body = `On ${e['timestamp']}\n${e['sender']} wrote:\n${e['body']}\n--------------------------------------------------------`;
+  }
+
   // Clear out composition fields
-  document.querySelector('#compose-recipients').value = '';
-  document.querySelector('#compose-subject').value = '';
-  document.querySelector('#compose-body').value = '';
+  document.querySelector('#compose-recipients').value = recipients;
+  document.querySelector('#compose-subject').value = subject;
+  document.querySelector('#compose-body').value = body;
 }
 
 const load_mailbox = (mailbox) => {
@@ -70,7 +81,7 @@ const load_mailbox = (mailbox) => {
         // console.log(e);
         const cover = document.createElement('a');
         // add listener to each email
-        cover.addEventListener('click', () => displayEmail(e));
+        cover.addEventListener('click', () => displayEmail(e, archive));
 
         // body of each email in the list
         cover.innerHTML = `
@@ -87,7 +98,7 @@ const load_mailbox = (mailbox) => {
     });
 }
 
-const displayEmail = (e) => {
+const displayEmail = (e, sent) => {
   // console.log(e['id']);
 
   // if the archive icon clicked the archive the mail and refresh
@@ -102,6 +113,8 @@ const displayEmail = (e) => {
     return;
   }
 
+  if (e['archived']) return;
+
   // display one email
   const div = document.querySelector('#emails-view');
   div.innerHTML = `
@@ -114,6 +127,13 @@ const displayEmail = (e) => {
     </div>
   `;
 
+  const button = document.createElement("input");
+  button.type = "button";
+  button.value = "Reply";
+  button.classList.add('btn', 'py-2', 'px-4', 'mt-2', 'reply-button');
+  button.onclick = () => reply(e, sent);
+  div.appendChild(button);
+
   // mark as read
   fetch(`/emails/${e['id']}`, {
     method: 'PUT',
@@ -121,4 +141,8 @@ const displayEmail = (e) => {
       read: true,
     })
   });
+}
+
+const reply = (e, sent) => {
+  compose_email(e, sent);
 }

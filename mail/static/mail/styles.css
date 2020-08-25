@@ -74,6 +74,7 @@ body {
 }
 
 @media only screen and (max-width: 380px) {
+
     /* todo make clickable menu */
 }
 
@@ -88,16 +89,15 @@ body {
     text-align: end;
 }
 
-a {
+#emails-view>a {
     color: black;
     position: relative;
     top: 0;
     transition: top ease 0.5s;
-
     cursor: pointer;
 }
 
-a:hover {
+#emails-view>a:hover {
     text-decoration: none;
     color: black;
     top: -0.5rem;
@@ -108,14 +108,14 @@ a:hover>div {
 }
 
 .details-grid {
-    height: 84vh;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 5fr 1fr;
+    grid-gap: 10px;
+    grid-template-rows: repeat(3, auto) 1fr auto;
 }
 
 .icon {
     border: none;
-    color: lightblue;
+    color: rgb(114, 182, 204);
     font-size: 16px;
     cursor: pointer;
     background: transparent;
@@ -124,4 +124,40 @@ a:hover>div {
 
 .icon:hover {
     color: blue;
+}
+
+.reply-button {
+    position: fixed;
+    bottom: 1.5rem;
+    border: 1.5px solid maroon;
+    color: maroon;
+}
+
+.reply-button:hover {
+    color: white;
+    background: maroon;
+}
+
+html {
+    min-width: 370px;
+}
+
+.body {
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-content: center;
+    justify-content: stretch;
+}
+
+.child {
+    width: 50vw;
+    min-width: 300px;
+    justify-self: center;
+    text-align: center;
+    border: 2px solid palevioletred;
+    padding: 2rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.658);
 }
