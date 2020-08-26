@@ -110,7 +110,13 @@ a:hover>div {
 .details-grid {
     display: grid;
     grid-gap: 10px;
-    grid-template-rows: repeat(3, auto) 1fr auto;
+    grid-template-rows: repeat(4, auto) 1fr;
+}
+
+.details-grid>hr {
+    color: black;
+    background-color: red;
+    background: blue;
 }
 
 .icon {
@@ -119,7 +125,6 @@ a:hover>div {
     font-size: 16px;
     cursor: pointer;
     background: transparent;
-    /* display: none; */
 }
 
 .icon:hover {

@@ -122,8 +122,9 @@ const displayEmail = (e, sent) => {
       <span>Sender: <strong>${e['sender']}</strong></span>
       <span>Recipients: <strong>${e['recipients'].join(', ')}</strong></span>
       <span>Subject: <strong>${e['subject']}</strong></span>
-      <span>Body: <strong>${e['body']}</strong></span>
-      <span>Sent at: <strong>${e['timestamp']}</strong></span>
+      <span>Time: <strong>${e['timestamp']}</strong></span>
+      <hr style="border: 0.5px solid #000; width: 90%; margin-top: 1%; margin-bottom: 1%;">
+      <span class="text-center"><strong>${e['body']}</strong></span>
     </div>
   `;
 
