@@ -101,7 +101,7 @@ const load_mailbox = (mailbox) => {
 const displayEmail = (e, sent) => {
   // console.log(e['id']);
 
-  // if the archive icon clicked the archive the mail and refresh
+  // if the archive icon clicked then archive the mail and refresh
   if (event.target.closest('.icon')) {
     // console.log("clicked");
     fetch(`/emails/${e['id']}`, {
