@@ -81,7 +81,7 @@ const load_mailbox = (mailbox) => {
         // console.log(e);
         const cover = document.createElement('a');
         // add listener to each email
-        cover.addEventListener('click', () => displayEmail(e, archive));
+        cover.addEventListener('click', (event) => displayEmail(e, archive, event));
 
         // body of each email in the list
         cover.innerHTML = `
@@ -98,8 +98,7 @@ const load_mailbox = (mailbox) => {
     });
 }
 
-const displayEmail = (e, sent) => {
-  // console.log(e['id']);
+const displayEmail = (e, sent, event) => {
 
   // if the archive icon clicked then archive the mail and refresh
   if (event.target.closest('.icon')) {
@@ -122,7 +121,7 @@ const displayEmail = (e, sent) => {
       <span>Sender: <strong>${e['sender']}</strong></span>
       <span>Recipients: <strong>${e['recipients'].join(', ')}</strong></span>
       <span>Subject: <strong>${e['subject']}</strong></span>
-      <span>Time: <strong>${e['timestamp']}</strong></span>
+      <span><small>Time: <strong>${e['timestamp']}</strong></small></span>
       <hr style="border: 0.5px solid #000; width: 90%; margin-top: 1%; margin-bottom: 1%;">
       <span class="text-center"><strong>${e['body']}</strong></span>
     </div>

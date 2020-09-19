@@ -3,7 +3,12 @@ textarea {
 }
 
 body {
-    background: mistyrose;
+    min-height: 100vh;
+    background-image: linear-gradient(to left bottom, #ffe4e1, #e5c4cc, #c5a7bb, #9d8dad, #6d779c);
+}
+
+.form-control {
+    background-color: #ffe4e1 !important;
 }
 
 .mail--read {
@@ -12,7 +17,7 @@ body {
 }
 
 .mail--unread {
-    background: rgba(255, 218, 185, 0.315);
+    background: #c5a7bb;
     border: 0.05rem solid black;
 }
 
