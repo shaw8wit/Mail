@@ -1,5 +1,15 @@
 # Mail
+
+![Github Followers](https://img.shields.io/github/followers/shaw8wit?label=Follow&style=social)&nbsp;
+![GitHub stars](https://img.shields.io/github/stars/shaw8wit/Mail?style=social)&nbsp;
+![GitHub forks](https://img.shields.io/github/forks/shaw8wit/Mail?style=social)&nbsp;
+![GitHub watchers](https://img.shields.io/github/watchers/shaw8wit/Mail?style=social)
+
+![Demo Image](https://github.com/shaw8wit/Mail/blob/master/screenshots/inbox_full.png)
+
 Single-page-app email client using JavaScript and Django API's.
+
+![View](https://github.com/shaw8wit/Mail/tree/master/screenshots) more screenshots.
 
 ## Getting Started
 + clone or download the repo and ```cd``` into the directory.
