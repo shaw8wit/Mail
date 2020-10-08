@@ -9,7 +9,7 @@
 
 Single-page-app email client using JavaScript and Django API's.
 
-![View](https://github.com/shaw8wit/Mail/tree/master/screenshots) more screenshots.
+#### [View](https://github.com/shaw8wit/Mail/tree/master/screenshots) more screenshots.
 
 ## Getting Started
 + clone or download the repo and ```cd``` into the directory.
